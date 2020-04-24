@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { v4 } from 'uuid';
-import { TodoType } from './TodoList';
+import React, {useState, useRef, useEffect} from 'react';
+import {v4} from 'uuid';
+import {TodoType} from './TodoList';
 
 type TodoInputType = {
   onAdd: (todo: TodoType) => void
 }
 
-export const TodoInput = ({ onAdd }: TodoInputType) => {
-  const [ , setValue ] = useState('');
+export const TodoInput = ({onAdd}: TodoInputType) => {
+  const [, setValue] = useState('');
   const ref = useRef<HTMLInputElement | null>(null);
   const handleInputChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -33,7 +33,11 @@ export const TodoInput = ({ onAdd }: TodoInputType) => {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="col s12">
+    <form
+      autoComplete="off"
+      onSubmit={handleSubmit}
+      className="col s12"
+    >
       <div className="row">
         <div className="input-field col s6">
           <input
