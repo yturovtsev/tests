@@ -5,7 +5,7 @@ export type TodoType = {
   name: string,
   isCompleted: boolean
 }
-type TodoListType = {
+export type TodoListType = {
   todos: TodoType[],
   onDelete: (id: string) => void,
   onCheckBoxToggle: (id: string) => void

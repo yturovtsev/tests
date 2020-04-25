@@ -1,49 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { TodoList, TodoType } from './TodoList';
-import { TodoInput } from './TodoInput';
-import './app.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Basic } from "./containers/Basic/Basic";
+import "./assets/App.css";
 
 function App() {
-  const { todos, setTodos, handleAddTodo, handleDeleteTodo, handleCheckBoxToggle } = useAppLogic();
-
-
-  useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem('todos') || '[]'));
-  }, [setTodos]);
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
   return (
-    <div className="App">
-      <TodoInput onAdd={handleAddTodo} />
-      <TodoList
-        onCheckBoxToggle={handleCheckBoxToggle}
-        onDelete={handleDeleteTodo}
-        todos={todos}
-      />
-    </div>
+    <Router>
+      <nav>
+        <div className="nav-wrapper">
+          <ul>
+            <li>
+              <Link to="/basic">Basic</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <Switch>
+        <Route path="/basic">
+          <Basic />
+        </Route>
+      </Switch>
+    </Router>
   );
-}
-
-const useAppLogic = () => {
-  const [ todos, setTodos ] = useState<TodoType[] | []>([]);
-  const handleAddTodo = (todo: TodoType) => {
-    setTodos([ ...todos, todo ]);
-  };
-  const handleDeleteTodo = (id: string) => {
-    setTodos([ ...todos.filter(el => el.id !== id) ]);
-  };
-  const handleCheckBoxToggle = (id :string) => {
-    const copyTodos = [ ...todos ];
-    const todoIdx = copyTodos.findIndex(el => el.id === id);
-
-    copyTodos[todoIdx].isCompleted = !copyTodos[todoIdx].isCompleted;
-    setTodos(copyTodos);
-  }
-
-  return { todos, setTodos, handleAddTodo, handleDeleteTodo, handleCheckBoxToggle };
 }
 
 export default App;
