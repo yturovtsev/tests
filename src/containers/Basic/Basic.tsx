@@ -21,6 +21,7 @@ export const Basic = () => {
 
   return (
     <div className="App">
+      <h1>Basic</h1>
       <TodoInput onAdd={handleAddTodo} />
       <TodoList
         onCheckBoxToggle={handleCheckBoxToggle}
