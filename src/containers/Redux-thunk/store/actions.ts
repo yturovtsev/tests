@@ -2,6 +2,10 @@ import { TodoType } from '../../../components/TodoList';
 import { ActionType, AppActions } from './types';
 import { Dispatch } from 'redux';
 
+export const fetchTodos = (): AppActions => ({
+  type: ActionType.TODOS_FETCH_REQUESTED,
+});
+
 export const addTodo = (todo: TodoType): AppActions => ({
   type: ActionType.ADD_NEW_TODO,
   payload: { todo },

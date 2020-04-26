@@ -5,6 +5,28 @@ export enum ActionType {
   DELETE_TODO = 'DELETE_TODO',
   SET_TODOS = 'SET_TODOS',
   TOGGLE_CHECKBOX = 'TOGGLE_CHECKBOX',
+
+  TODOS_FETCH_REQUESTED = 'TODOS_FETCH_REQUESTED',
+  TODOS_FETCH_FAILED = 'TODOS_FETCH_FAILED',
+  SET_FETCHED_TODOS = 'SET_FETCHED_TODOS',
+}
+
+export type FetchedTodoType = {
+  id: string;
+  userId: number;
+  title: string;
+  completed: boolean;
+};
+
+export interface IFetchTodos {
+  type: typeof ActionType.TODOS_FETCH_REQUESTED;
+}
+
+export interface IFetchTodosType {
+  type: typeof ActionType.SET_FETCHED_TODOS;
+  payload: {
+    todos: FetchedTodoType[];
+  };
 }
 
 export interface IAddTodo {
@@ -39,6 +61,8 @@ export type TodoActionsType =
   | IAddTodo
   | IDeleteTodo
   | ISetTodos
-  | IToggleCheckBox;
+  | IToggleCheckBox
+  | IFetchTodosType
+  | IFetchTodos;
 
 export type AppActions = TodoActionsType;
