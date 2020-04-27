@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Basic } from './containers/Basic/Basic';
 import ReduxThunk from './containers/Redux-thunk/Redux-thunk';
@@ -12,10 +17,14 @@ export default () => (
       <div className="nav-wrapper">
         <ul>
           <li>
-            <Link to="/basic">Basic</Link>
+            <NavLink exact activeClassName="active" to="/basic">
+              Basic
+            </NavLink>
           </li>
           <li>
-            <Link to="/redux-thunk">Redux-thunk</Link>
+            <NavLink activeClassName="active" to="/redux-thunk">
+              Redux-thunk
+            </NavLink>
           </li>
         </ul>
       </div>
